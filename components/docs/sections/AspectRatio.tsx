@@ -6,7 +6,7 @@ export const AspectRatio: React.FC = () => {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="space-y-2"><h1 className="scroll-m-20 text-4xl font-bold tracking-tight">Aspect Ratio</h1><p className="text-xl text-muted-foreground">Displays content within a desired ratio.</p></div>
-      <ComponentPreview preview={<div className="w-[450px] overflow-hidden rounded-md border shadow-sm"><div style={{ paddingBottom: '56.25%' }} className="relative w-full bg-muted"><img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80" alt="Photo" className="absolute inset-0 h-full w-full object-cover"/></div></div>} code={`<script setup>import { AspectRatio } from '@/components/ui/aspect-ratio'</script>
+      <ComponentPreview preview={<div className="w-[450px] overflow-hidden rounded-md shadow-sm"><div style={{ paddingBottom: '56.25%' }} className="relative w-full bg-muted"><img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80" alt="Photo" className="absolute inset-0 h-full w-full object-cover"/></div></div>} code={`<script setup>import { AspectRatio } from '@/components/ui/aspect-ratio'</script>
 
 <template>
   <div class="w-[450px]">
