@@ -59,7 +59,7 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
       <ComponentPreview preview={
         <div className="w-full space-y-6 p-6 rounded-xl border border-border bg-card">
           {/* Header with Title and Statistics */}
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between pb-4 border-b border-border/60">
             {/* Left: Title and Subtitle */}
             <div>
               <h3 className="text-lg font-semibold mb-1">Bar Chart - Interactive</h3>
@@ -67,11 +67,13 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
             </div>
             
             {/* Right: Statistics - Clickable */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 rounded-lg bg-muted/40 p-1">
               <button
                 onClick={() => state.setChartViewType('desktop')}
-                className={`text-right transition-colors cursor-pointer ${
-                  state.chartViewType === 'desktop' ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                className={`text-right text-sm font-medium px-4 py-2 rounded-md border transition-colors cursor-pointer ${
+                  state.chartViewType === 'desktop'
+                    ? 'bg-background border-border text-foreground shadow-sm'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/60'
                 }`}
               >
                 <div className="text-sm text-muted-foreground">Desktop</div>
@@ -80,8 +82,10 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
               <div className="h-12 w-px bg-border"></div>
               <button
                 onClick={() => state.setChartViewType('mobile')}
-                className={`text-right transition-colors cursor-pointer ${
-                  state.chartViewType === 'mobile' ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                className={`text-right text-sm font-medium px-4 py-2 rounded-md border transition-colors cursor-pointer ${
+                  state.chartViewType === 'mobile'
+                    ? 'bg-background border-border text-foreground shadow-sm'
+                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/60'
                 }`}
               >
                 <div className="text-sm text-muted-foreground">Mobile</div>
@@ -102,7 +106,7 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
             </div>
 
             {/* Chart Area */}
-            <div className="ml-12 border-l border-b border-border pb-8">
+            <div className="ml-12 border-l border-b border-t border-border pb-8">
               <div className="relative h-64 flex items-end justify-between gap-2 px-4">
                 {chartData.map((item, index) => {
                   // 归一化后转换为固定像素高度，避免百分比在不同容器下表现不一致
