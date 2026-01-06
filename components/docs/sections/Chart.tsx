@@ -31,7 +31,9 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
     };
   });
 
-  const maxValue = Math.max(...chartData.map((d) => d.pageViews));
+  const values = chartData.map((d) => d.pageViews);
+  const maxValue = Math.max(...values);
+  const minValue = Math.min(...values);
   const desktopTotal = 24828;
   const mobileTotal = 25010;
 
@@ -103,7 +105,10 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
             <div className="ml-12 border-l border-b border-border pb-8">
               <div className="relative h-64 flex items-end justify-between gap-2 px-4">
                 {chartData.map((item, index) => {
-                  const height = (item.pageViews / maxValue) * 100;
+                  // 归一化高度，保证柱子高度差异明显（至少 20% ~ 100%）
+                  const range = Math.max(1, maxValue - minValue);
+                  const normalized = (item.pageViews - minValue) / range; // 0 ~ 1
+                  const height = 20 + normalized * 80; // 20% ~ 100%
                   const isHovered = state.chartHoveredBar === index;
                   return (
                     <div
