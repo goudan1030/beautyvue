@@ -57,7 +57,7 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
 
       {/* Interactive Bar Chart Preview */}
       <ComponentPreview preview={
-        <div className="w-full space-y-6 p-6">
+        <div className="w-full space-y-6 p-6 rounded-xl border border-border bg-card">
           {/* Header with Title and Statistics */}
           <div className="flex items-start justify-between">
             {/* Left: Title and Subtitle */}
