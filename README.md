@@ -46,7 +46,7 @@
     - **Usage**：更细致的用法示例与拆解
 
 - **AI 助手集成**
-  - 右下角内置 AI 助手（基于 Gemini），可以回答使用问题、生成变体代码片段。
+  - 右下角内置 AI 助手（基于 DeepSeek），可以回答使用问题、生成变体代码片段。
 
 ---
 
@@ -112,7 +112,7 @@ components/
       CodeBlock.tsx             # 代码高亮与复制按钮
       ComponentPreview.tsx      # 预览 / Code Tabs UI
 services/
-  geminiService.ts              # AI 助手调用 Gemini 的封装
+  geminiService.ts              # AI 助手调用 DeepSeek API 的封装
 translations.ts                 # 中英文文案与多语言支持
 ```
 
