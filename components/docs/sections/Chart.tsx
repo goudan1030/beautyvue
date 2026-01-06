@@ -101,20 +101,20 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
 
             {/* Chart Area */}
             <div className="ml-12 border-l border-b border-border pb-8">
-              <div className="relative h-64 flex items-end justify-between gap-0.5 px-2">
+              <div className="relative h-64 flex items-end justify-between gap-2 px-4">
                 {chartData.map((item, index) => {
                   const height = (item.pageViews / maxValue) * 100;
                   const isHovered = state.chartHoveredBar === index;
                   return (
                     <div
                       key={index}
-                      className="flex-1 relative group min-w-[2px]"
+                      className="relative group flex-1 flex justify-center"
                       onMouseEnter={() => state.setChartHoveredBar(index)}
                       onMouseLeave={() => state.setChartHoveredBar(null)}
                     >
                       <div
-                        className="w-full bg-primary hover:bg-primary/90 transition-all cursor-pointer rounded-t"
-                        style={{ height: `${height}%`, minHeight: '2px' }}
+                        className="w-3 sm:w-4 md:w-5 bg-primary hover:bg-primary/90 transition-all cursor-pointer rounded-t-md shadow-sm"
+                        style={{ height: `${height}%`, minHeight: '8px' }}
                       />
                       {/* Tooltip */}
                       {isHovered && (
