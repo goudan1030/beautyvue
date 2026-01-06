@@ -19,7 +19,7 @@ export const ComponentPreview = ({
   };
 
   return (
-    <div className="rounded-xl border bg-card text-card-foreground shadow-sm my-6 scroll-mt-20" id="preview">
+    <div className="rounded-xl bg-card text-card-foreground shadow-sm my-6 scroll-mt-20" id="preview">
       <div className="flex items-center justify-between border-b p-3 bg-muted/20">
          <div className="flex items-center gap-1">
             <button 
