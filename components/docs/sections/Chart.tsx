@@ -105,10 +105,10 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
             <div className="ml-12 border-l border-b border-border pb-8">
               <div className="relative h-64 flex items-end justify-between gap-2 px-4">
                 {chartData.map((item, index) => {
-                  // 归一化高度，保证柱子高度差异明显（至少 20% ~ 100%）
+                  // 归一化后转换为固定像素高度，避免百分比在不同容器下表现不一致
                   const range = Math.max(1, maxValue - minValue);
                   const normalized = (item.pageViews - minValue) / range; // 0 ~ 1
-                  const height = 20 + normalized * 80; // 20% ~ 100%
+                  const heightPx = 16 + normalized * 200; // 16px ~ 216px
                   const isHovered = state.chartHoveredBar === index;
                   return (
                     <div
@@ -119,7 +119,7 @@ export const Chart: React.FC<ChartProps> = ({ state }) => {
                     >
                       <div
                         className="w-3 sm:w-4 md:w-5 bg-primary hover:bg-primary/90 transition-all cursor-pointer rounded-t-md shadow-sm"
-                        style={{ height: `${height}%`, minHeight: '8px' }}
+                        style={{ height: `${heightPx}px` }}
                       />
                       {/* Tooltip */}
                       {isHovered && (
