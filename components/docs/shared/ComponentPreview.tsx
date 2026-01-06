@@ -37,7 +37,7 @@ export const ComponentPreview = ({
          </div>
       </div>
       {activeTab === 'preview' ? (
-        <div className="p-10 flex min-h-[350px] w-full justify-center items-center bg-background border-b rounded-b-xl overflow-hidden relative">
+        <div className="p-10 flex min-h-[350px] w-full justify-center items-center bg-background rounded-b-xl overflow-hidden relative">
            {preview}
         </div>
       ) : (
