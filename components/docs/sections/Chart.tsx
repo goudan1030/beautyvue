@@ -8,39 +8,30 @@ interface ChartProps {
 }
 
 export const Chart: React.FC<ChartProps> = ({ state }) => {
-  // 生成过去3个月的数据（从4月到6月）
-  const generateChartData = (type: 'desktop' | 'mobile') => {
-    const data = [];
-    const months = ['Apr', 'May', 'Jun'];
-    const daysPerMonth = [30, 31, 30];
-    
-    // 为 Desktop 和 Mobile 生成不同的数据
-    const baseValues = type === 'desktop' 
-      ? [180, 220, 200, 250, 280, 240, 260, 290, 270, 300, 250, 280, 320, 290, 310, 280, 300, 330, 310, 290, 320, 300, 340, 320, 310, 330, 350, 320, 310, 340]
-      : [200, 240, 220, 270, 300, 260, 280, 310, 290, 320, 270, 300, 340, 310, 330, 300, 320, 350, 330, 310, 340, 320, 360, 340, 330, 350, 370, 340, 330, 360];
-    
-    let dataIndex = 0;
-    months.forEach((month, monthIdx) => {
-      const days = daysPerMonth[monthIdx];
-      // 更均匀地分布日期
-      const step = Math.ceil(days / 10);
-      for (let i = 1; i <= days; i += step) {
-        if (dataIndex < baseValues.length) {
-          const variation = Math.floor(Math.random() * 40) - 20;
-          data.push({
-            date: `${month} ${i}`,
-            fullDate: `${month} ${i}, 2024`,
-            pageViews: Math.max(100, baseValues[dataIndex] + variation)
-          });
-          dataIndex++;
-        }
-      }
-    });
-    return data;
-  };
+  // 使用一组固定的、可视化效果更明显的数据，避免随机波动导致图表过扁或不可见
+  const baseChartData = [
+    { date: 'Apr 1', fullDate: 'Apr 1, 2024', pageViews: 220 },
+    { date: 'Apr 10', fullDate: 'Apr 10, 2024', pageViews: 260 },
+    { date: 'Apr 19', fullDate: 'Apr 19, 2024', pageViews: 210 },
+    { date: 'Apr 28', fullDate: 'Apr 28, 2024', pageViews: 280 },
+    { date: 'May 7', fullDate: 'May 7, 2024', pageViews: 300 },
+    { date: 'May 16', fullDate: 'May 16, 2024', pageViews: 340 },
+    { date: 'May 25', fullDate: 'May 25, 2024', pageViews: 290 },
+    { date: 'Jun 3', fullDate: 'Jun 3, 2024', pageViews: 320 },
+    { date: 'Jun 12', fullDate: 'Jun 12, 2024', pageViews: 360 },
+    { date: 'Jun 21', fullDate: 'Jun 21, 2024', pageViews: 310 },
+  ];
 
-  const chartData = generateChartData(state.chartViewType);
-  const maxValue = Math.max(...chartData.map(d => d.pageViews));
+  // 根据视图类型稍微放大 / 缩小数值，保持趋势一致
+  const chartData = baseChartData.map((item) => {
+    const factor = state.chartViewType === 'desktop' ? 1 : 1.05;
+    return {
+      ...item,
+      pageViews: Math.round(item.pageViews * factor),
+    };
+  });
+
+  const maxValue = Math.max(...chartData.map((d) => d.pageViews));
   const desktopTotal = 24828;
   const mobileTotal = 25010;
 

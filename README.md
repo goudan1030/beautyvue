@@ -123,13 +123,13 @@ translations.ts                 # 中英文文案与多语言支持
   - `#components` → 打开组件视图（实际也是文档，只是默认选中某个组件）
   - 无 hash → 落地页
 
-- **文档内部 section**（通过 `?section=` 控制）：
-  - `?section=accordion` → 显示 Accordion 文档
-  - `?section=button` → 显示 Button 文档
+- **文档内部 section**（通过 `?Components=` 控制）：
+  - `?Components=accordion` → 显示 Accordion 文档
+  - `?Components=button` → 显示 Button 文档
 
 `DocsView` 会：
 
-1. 解析当前 URL 的 `section` 参数（兼容 `#docs?section=avatar` 这种写法）。
+1. 解析当前 URL 的 `Components` 参数（兼容 `#docs?Components=avatar` 这种写法）。
 2. 把它映射到 `DocSection` 枚举。
 3. 根据 `activeSection` 渲染对应的 `./docs/sections/*.tsx` 组件。
 

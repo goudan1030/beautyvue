@@ -229,17 +229,17 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
   // 直接在初始化时从 URL 读取状态
   const getInitialSectionFromURL = (): DocSection => {
     if (typeof window !== 'undefined') {
-      // 先从 search 参数读取，如果没有则从 hash 中读取（处理 #docs?section=avatar 这种情况）
+      // 先从 search 参数读取，如果没有则从 hash 中读取（处理 #docs?Components=avatar 这种情况）
       let searchString = window.location.search;
       if (!searchString && window.location.hash.includes('?')) {
-        // hash 中包含 query 参数，如 #docs?section=avatar
+        // hash 中包含 query 参数，如 #docs?Components=avatar
         const hashParts = window.location.hash.split('?');
         if (hashParts.length > 1) {
           searchString = '?' + hashParts.slice(1).join('?');
         }
       }
       const params = new URLSearchParams(searchString);
-      const section = params.get('section');
+      const section = params.get('Components');
       const validSections: DocSection[] = ['intro', 'install', 'accordion', 'alert', 'alert-dialog', 'aspect-ratio', 'avatar', 'badge', 'breadcrumb', 'button', 'button-group',
         'calendar', 'card', 'carousel', 'chart', 'checkbox', 'collapsible', 'combobox', 'command', 'context-menu', 
         'data-table', 'date-picker', 'dialog', 'drawer', 'dropdown-menu', 'empty',
@@ -268,7 +268,7 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
       }
     }
     const params = new URLSearchParams(searchString);
-    const section = params.get('section');
+    const section = params.get('Components');
     const validSections: DocSection[] = ['intro', 'install', 'accordion', 'alert', 'alert-dialog', 'aspect-ratio', 'avatar', 'badge', 'breadcrumb', 'button', 'button-group',
       'calendar', 'card', 'carousel', 'chart', 'checkbox', 'collapsible', 'combobox', 'command', 'context-menu', 
       'data-table', 'date-picker', 'dialog', 'drawer', 'dropdown-menu', 'empty',
@@ -471,10 +471,10 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
       }
     }
     const params = new URLSearchParams(searchString);
-    const currentSection = params.get('section');
+    const currentSection = params.get('Components');
     if (activeSection && currentSection !== activeSection) {
-      params.set('section', activeSection);
-      // 将参数放在 hash 中，格式如 #docs?section=avatar
+      params.set('Components', activeSection);
+      // 将参数放在 hash 中，格式如 #docs?Components=avatar
       const newUrl = `${window.location.pathname}${hashPart}?${params.toString()}`;
       window.history.replaceState({}, '', newUrl);
     }
