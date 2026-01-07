@@ -14,7 +14,8 @@ export default defineConfig(({ mode }) => {
       plugins: [react()],
       define: {
         'process.env.API_KEY': JSON.stringify(deepseekApiKey),
-        'process.env.DEEPSEEK_API_KEY': JSON.stringify(deepseekApiKey)
+        'process.env.DEEPSEEK_API_KEY': JSON.stringify(deepseekApiKey),
+        'process.env.VITE_GA_MEASUREMENT_ID': JSON.stringify(env.VITE_GA_MEASUREMENT_ID || ''),
       },
       resolve: {
         alias: {

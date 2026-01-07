@@ -17,6 +17,7 @@ import { DocsView } from './components/DocsView';
 import { ThemeToggle } from './components/ThemeToggle';
 import { PageView, Language } from './types';
 import { translations } from './translations';
+import { pageview } from './utils/gtag';
 
 const App: React.FC = () => {
   // 直接在初始化时从 URL 读取状态
@@ -67,11 +68,19 @@ const App: React.FC = () => {
       } else if (!hashPart) {
         setView(PageView.LANDING);
       }
+      
+      // 发送页面浏览事件到 Google Analytics
+      const url = window.location.pathname + window.location.search + window.location.hash;
+      pageview(url);
     };
 
     const handlePopState = () => {
       handleHashChange();
     };
+
+    // 初始页面浏览
+    const initialUrl = window.location.pathname + window.location.search + window.location.hash;
+    pageview(initialUrl);
 
     window.addEventListener('hashchange', handleHashChange);
     window.addEventListener('popstate', handlePopState);
@@ -87,16 +96,20 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
     
     // 更新 URL hash（使用 pushState 避免页面跳转）
+    let url: string;
     if (newView === PageView.LANDING) {
       // 清除 hash，回到首页
-      const url = window.location.pathname + (window.location.search || '');
+      url = window.location.pathname + (window.location.search || '');
       window.history.pushState(null, '', url);
     } else {
       // 设置 hash，保留现有的 search 参数
       const search = window.location.search || '';
-      const url = window.location.pathname + search + `#${newView.toLowerCase()}`;
+      url = window.location.pathname + search + `#${newView.toLowerCase()}`;
       window.history.pushState(null, '', url);
     }
+    
+    // 发送页面浏览事件到 Google Analytics
+    pageview(url);
   };
 
   const toggleLanguage = () => {

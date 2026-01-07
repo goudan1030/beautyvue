@@ -93,6 +93,34 @@ npm run dev
 
 - `http://localhost:3000/`
 
+### 环境变量配置
+
+创建 `.env.local` 文件（或 `.env`）来配置环境变量：
+
+```bash
+# DeepSeek API Key（用于 AI 助手）
+DEEPSEEK_API_KEY=your_deepseek_api_key_here
+
+# Google Analytics Measurement ID (GA4)
+# 格式: G-XXXXXXXXXX
+# 获取方式：访问 https://analytics.google.com → 创建属性 → 数据流 → Web → 测量 ID
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+**Google Analytics 配置说明：**
+
+1. 访问 [Google Analytics](https://analytics.google.com/)
+2. 创建新的 GA4 属性（如果还没有）
+3. 在"管理" → "数据流" → "Web" 中创建数据流
+4. 复制"测量 ID"（格式为 `G-XXXXXXXXXX`）
+5. 将测量 ID 添加到 `.env.local` 文件中的 `VITE_GA_MEASUREMENT_ID`
+6. 重启开发服务器
+
+配置完成后，Google Analytics 会自动：
+- 跟踪页面浏览（包括 hash 路由变化）
+- 记录用户在文档站中的导航行为
+- 支持自定义事件追踪（通过 `utils/gtag.ts` 中的 `event` 函数）
+
 ---
 
 ## 文档站结构说明
