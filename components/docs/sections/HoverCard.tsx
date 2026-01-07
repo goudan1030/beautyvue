@@ -12,8 +12,8 @@ export const HoverCard: React.FC = () => {
           <div className="flex items-center justify-center h-[200px]">
             <div className="relative group">
               <button className="text-sm font-semibold hover:underline">@vuejs</button>
-              <div className="absolute left-1/2 -translate-x-1/2 top-6 w-80 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none group-hover:block hidden z-50">
-                <div className="flex justify-between space-x-4">
+              <div className="absolute left-0 top-6 w-[320px] rounded-md border bg-background p-4 text-popover-foreground shadow-md outline-none group-hover:block hidden z-50" style={{ backgroundColor: 'hsl(var(--background))' }}>
+                <div className="flex gap-4">
                   <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border">
                     <img
                       src="https://vuejs.org/images/logo.png"
@@ -21,11 +21,11 @@ export const HoverCard: React.FC = () => {
                       className="aspect-square h-full w-full object-cover"
                     />
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-1 flex-1 min-w-0">
                     <h4 className="text-sm font-semibold">@vuejs</h4>
                     <p className="text-sm">The Progressive JavaScript Framework.</p>
                     <div className="flex items-center pt-2">
-                      <CalendarDays className="mr-2 h-4 w-4 opacity-70" />
+                      <CalendarDays className="mr-2 h-4 w-4 opacity-70 shrink-0" />
                       <span className="text-xs text-muted-foreground">Joined January 2014</span>
                     </div>
                   </div>

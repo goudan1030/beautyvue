@@ -24,10 +24,10 @@ export const askVueAssistant = async (question: string): Promise<string> => {
           {
             role: 'system',
             content: `You are the AI Assistant for Vue.Beauty, a modern Vue 3 UI library based on Tailwind CSS and Headless UI primitives.
-
-Style guidelines:
-1. Use <script setup lang="ts">
-2. Use Tailwind CSS classes.
+      
+      Style guidelines:
+      1. Use <script setup lang="ts">
+      2. Use Tailwind CSS classes.
 3. Be polite and professional.
 4. Provide concise, helpful answers.
 5. If users ask for code, provide Vue 3 Composition API code using <script setup>.

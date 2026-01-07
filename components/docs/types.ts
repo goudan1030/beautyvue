@@ -20,6 +20,12 @@ export interface DocSectionState {
   // Checkbox
   isChecked: boolean;
   setIsChecked: (checked: boolean) => void;
+  isChecked2: boolean;
+  setIsChecked2: (checked: boolean) => void;
+  isChecked3: boolean;
+  setIsChecked3: (checked: boolean) => void;
+  isChecked4: boolean;
+  setIsChecked4: (checked: boolean) => void;
   
   // Switch
   isSwitchOn: boolean;
@@ -36,6 +42,12 @@ export interface DocSectionState {
   // Dropdown
   isDropdownOpen: boolean;
   setIsDropdownOpen: (open: boolean) => void;
+  
+  // ContextMenu
+  isContextMenuOpen: boolean;
+  setIsContextMenuOpen: (open: boolean) => void;
+  contextMenuPosition: { x: number; y: number } | null;
+  setContextMenuPosition: (pos: { x: number; y: number } | null) => void;
   
   // HoverCard
   isHoverCardOpen: boolean;
@@ -98,6 +110,12 @@ export interface DocSectionState {
   setDatePickerOpen: (open: boolean) => void;
   datePickerDate: Date | undefined;
   setDatePickerDate: (date: Date | undefined) => void;
+  datePickerViewDate: Date;
+  setDatePickerViewDate: (date: Date) => void;
+  datePickerMonthSelectOpen: boolean;
+  setDatePickerMonthSelectOpen: (open: boolean) => void;
+  datePickerYearSelectOpen: boolean;
+  setDatePickerYearSelectOpen: (open: boolean) => void;
   
   // Calendar
   calendarDate: Date;
@@ -130,6 +148,20 @@ export interface DocSectionState {
   setButtonGroupDropdownPosition: (pos: { top: number; left: number } | null) => void;
   buttonGroupDropdownRef: React.RefObject<HTMLDivElement>;
   buttonGroupTriggerRef: React.RefObject<HTMLButtonElement>;
+  
+  // DataTable
+  dataTableSelectedRows: string[];
+  setDataTableSelectedRows: (rows: string[]) => void;
+  dataTableFilter: string;
+  setDataTableFilter: (filter: string) => void;
+  dataTableSortColumn: string | null;
+  setDataTableSortColumn: (column: string | null) => void;
+  dataTableSortDirection: 'asc' | 'desc' | null;
+  setDataTableSortDirection: (direction: 'asc' | 'desc' | null) => void;
+  dataTableColumnsDropdownOpen: boolean;
+  setDataTableColumnsDropdownOpen: (open: boolean) => void;
+  dataTableRowMenuOpen: string | null;
+  setDataTableRowMenuOpen: (rowId: string | null) => void;
 }
 
 export const getTranslations = (language: Language = 'en') => {

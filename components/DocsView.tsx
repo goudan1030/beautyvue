@@ -286,10 +286,15 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
   const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false);
   const [accordionValue, setAccordionValue] = useState<string | null>("item-1");
   const [isChecked, setIsChecked] = useState(true);
+  const [isChecked2, setIsChecked2] = useState(true);
+  const [isChecked3, setIsChecked3] = useState(false);
+  const [isChecked4, setIsChecked4] = useState(true);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [activeTab, setActiveTab] = useState("account");
   const [isCollapsibleOpen, setIsCollapsibleOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isContextMenuOpen, setIsContextMenuOpen] = useState(false);
+  const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number } | null>(null);
   const [isHoverCardOpen, setIsHoverCardOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [radioValue, setRadioValue] = useState("default");
@@ -307,6 +312,9 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
   const [otpValue, setOtpValue] = useState(["", "", "", "", "", ""]);
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [datePickerDate, setDatePickerDate] = useState<Date>();
+  const [datePickerViewDate, setDatePickerViewDate] = useState<Date>(new Date());
+  const [datePickerMonthSelectOpen, setDatePickerMonthSelectOpen] = useState(false);
+  const [datePickerYearSelectOpen, setDatePickerYearSelectOpen] = useState(false);
   const [calendarDate, setCalendarDate] = useState<Date>(new Date(2024, 0, 14)); // January 14, 2024
   const [calendarView, setCalendarView] = useState<'month' | 'month-select' | 'year-select'>('month');
   const [comboboxOpen, setComboboxOpen] = useState(false);
@@ -319,6 +327,12 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
   const [buttonGroupDropdownPosition, setButtonGroupDropdownPosition] = useState<{ top: number; left: number } | null>(null);
   const buttonGroupDropdownRef = useRef<HTMLDivElement>(null);
   const buttonGroupTriggerRef = useRef<HTMLButtonElement>(null);
+  const [dataTableSelectedRows, setDataTableSelectedRows] = useState<string[]>([]);
+  const [dataTableFilter, setDataTableFilter] = useState("");
+  const [dataTableSortColumn, setDataTableSortColumn] = useState<string | null>(null);
+  const [dataTableSortDirection, setDataTableSortDirection] = useState<'asc' | 'desc' | null>(null);
+  const [dataTableColumnsDropdownOpen, setDataTableColumnsDropdownOpen] = useState(false);
+  const [dataTableRowMenuOpen, setDataTableRowMenuOpen] = useState<string | null>(null);
   
   // 创建 state 对象，符合 DocSectionState 接口
   const docSectionState = {
@@ -330,6 +344,12 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
     setAccordionValue,
     isChecked,
     setIsChecked,
+    isChecked2,
+    setIsChecked2,
+    isChecked3,
+    setIsChecked3,
+    isChecked4,
+    setIsChecked4,
     isSwitchOn,
     setIsSwitchOn,
     activeTab,
@@ -338,6 +358,10 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
     setIsCollapsibleOpen,
     isDropdownOpen,
     setIsDropdownOpen,
+    isContextMenuOpen,
+    setIsContextMenuOpen,
+    contextMenuPosition,
+    setContextMenuPosition,
     isHoverCardOpen,
     setIsHoverCardOpen,
     isPopoverOpen,
@@ -372,6 +396,12 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
     setDatePickerOpen,
     datePickerDate,
     setDatePickerDate,
+    datePickerViewDate,
+    setDatePickerViewDate,
+    datePickerMonthSelectOpen,
+    setDatePickerMonthSelectOpen,
+    datePickerYearSelectOpen,
+    setDatePickerYearSelectOpen,
     calendarDate,
     setCalendarDate,
     calendarView,
@@ -394,6 +424,18 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
     setButtonGroupDropdownPosition,
     buttonGroupDropdownRef,
     buttonGroupTriggerRef,
+    dataTableSelectedRows,
+    setDataTableSelectedRows,
+    dataTableFilter,
+    setDataTableFilter,
+    dataTableSortColumn,
+    setDataTableSortColumn,
+    dataTableSortDirection,
+    setDataTableSortDirection,
+    dataTableColumnsDropdownOpen,
+    setDataTableColumnsDropdownOpen,
+    dataTableRowMenuOpen,
+    setDataTableRowMenuOpen,
   };
   
   // 点击外部关闭按钮组下拉菜单
@@ -560,11 +602,11 @@ export const DocsView: React.FC<DocsViewProps> = ({ initialSection = 'intro', la
       case 'carousel': return <Carousel state={docSectionState} />;
       case 'chart': return <Chart state={docSectionState} />;
       case 'checkbox': return <Checkbox state={docSectionState} />;
-      case 'collapsible': return <Collapsible />;
+      case 'collapsible': return <Collapsible state={docSectionState} />;
       case 'combobox': return <Combobox state={docSectionState} />;
       case 'command': return <Command />;
-      case 'context-menu': return <ContextMenu />;
-      case 'data-table': return <DataTable />;
+      case 'context-menu': return <ContextMenu state={docSectionState} />;
+      case 'data-table': return <DataTable state={docSectionState} />;
       case 'date-picker': return <DatePicker state={docSectionState} />;
       case 'dialog': return <Dialog state={docSectionState} />;
       case 'drawer': return <Drawer state={docSectionState} />;
