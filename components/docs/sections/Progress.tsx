@@ -11,7 +11,7 @@ export const Progress: React.FC<ProgressProps> = ({ state }) => {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="space-y-2"><h1 className="scroll-m-20 text-4xl font-bold tracking-tight">Progress</h1><p className="text-xl text-muted-foreground">Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.</p></div>
-      <ComponentPreview preview={<div className="w-[60%]"><div className="relative h-4 w-full overflow-hidden rounded-full bg-secondary"><div className="h-full w-full flex-1 bg-primary transition-all duration-1000 ease-in-out" style={{ transform: `translateX(-${100 - (state.progressValue || 0)}%)` }} /></div></div>} code={`<script setup>
+      <ComponentPreview preview={<div className="w-[60%]"><div className="relative h-2 w-full overflow-hidden rounded-full bg-secondary"><div className="h-full w-full flex-1 bg-primary transition-all duration-1000 ease-in-out" style={{ transform: `translateX(-${100 - (state.progressValue || 0)}%)` }} /></div></div>} code={`<script setup>
 import { Progress } from '@/components/ui/progress'
 import { ref, onMounted } from 'vue'
 
